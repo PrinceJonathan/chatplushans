@@ -14,7 +14,12 @@
             background-color: #FDFDFD;
         }
 
-        .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+        /* 強制表格內容置左 */
+        table, th, td {
+            text-align: left !important;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { 
             background: #E2E8F0; 
             border-radius: 20px; 
@@ -23,44 +28,43 @@
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
 
-        .macaron-shadow-red { box-shadow: 0 15px 40px -12px rgba(229, 115, 115, 0.25); }
-        .macaron-shadow-teal { box-shadow: 0 15px 40px -12px rgba(77, 182, 172, 0.25); }
-        .macaron-shadow-blue { box-shadow: 0 15px 40px -12px rgba(100, 181, 246, 0.25); }
-        .macaron-shadow-yellow { box-shadow: 0 15px 40px -12px rgba(251, 192, 45, 0.25); }
-        .macaron-shadow-purple { box-shadow: 0 15px 40px -12px rgba(186, 104, 200, 0.25); }
+        .macaron-shadow-red { box-shadow: 0 10px 30px -10px rgba(229, 115, 115, 0.2); }
+        .macaron-shadow-teal { box-shadow: 0 10px 30px -10px rgba(77, 182, 172, 0.2); }
+        .macaron-shadow-blue { box-shadow: 0 10px 30px -10px rgba(100, 181, 246, 0.2); }
+        .macaron-shadow-yellow { box-shadow: 0 10px 30px -10px rgba(251, 192, 45, 0.2); }
+        .macaron-shadow-purple { box-shadow: 0 10px 30px -10px rgba(186, 104, 200, 0.2); }
 
         .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
         .animate-slide-up { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body class="text-slate-700">
 
-    <!-- Header - 參照圖片配置 -->
+    <!-- Header -->
     <header class="bg-white border-b border-slate-50 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-            <div class="flex items-center gap-6 sm:gap-8">
-                <!-- 大頭貼區域 -->
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-5 sm:gap-6">
                 <div class="relative cursor-pointer" onclick="goHome()">
-                    <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-[#E3F2FD] to-[#F3E5F5] p-1.5 shadow-sm hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#E3F2FD] to-[#F3E5F5] p-1 shadow-sm hover:scale-105 transition-transform duration-300">
                         <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white">
                             <img src="https://drive.google.com/thumbnail?id=17asuPePehiRAPfyyD5aja4Ng73srhsgz&sz=w400" class="w-full h-full object-cover" alt="台周老師">
                         </div>
                     </div>
-                    <div class="absolute -bottom-1 right-0 bg-white px-4 py-1 rounded-full border border-slate-100 shadow-xl">
-                        <p class="text-xs font-black text-[#5C6BC0] tracking-tighter">HOST</p>
+                    <div class="absolute -bottom-1 right-0 bg-white px-3 py-0.5 rounded-full border border-slate-100 shadow-lg">
+                        <p class="text-[10px] font-black text-[#5C6BC0] tracking-tighter">HOST</p>
                     </div>
                 </div>
                 
-                <div class="space-y-3">
-                    <h1 class="text-2xl sm:text-5xl font-black text-slate-800 tracking-tight cursor-pointer hover:text-indigo-600 transition-colors" onclick="goHome()">台周老師學院</h1>
-                    <div class="flex flex-wrap items-center gap-4">
-                        <div class="px-5 py-1.5 bg-[#EEF0FF] text-[#6366F1] rounded-xl text-base font-bold shadow-sm">
+                <div class="space-y-1.5 text-left">
+                    <h1 class="text-xl sm:text-3xl font-black text-slate-800 tracking-tight cursor-pointer hover:text-indigo-600 transition-colors" onclick="goHome()">台周老師學院</h1>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div class="px-3 py-1 bg-[#EEF0FF] text-[#6366F1] rounded-lg text-xs font-bold shadow-sm">
                             課綱圖書館
                         </div>
-                        <div class="text-slate-400 text-base font-medium">
+                        <div class="text-slate-400 text-xs font-medium">
                             主持人：台周老師
                         </div>
                     </div>
@@ -68,66 +72,60 @@
             </div>
 
             <div class="hidden lg:flex items-center gap-4">
-                <button onclick="fetchAllSheets()" class="p-3 bg-slate-50 text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 rounded-2xl transition-all">
-                    <i data-lucide="refresh-cw" class="w-6 h-6" id="refresh-icon"></i>
+                <button onclick="fetchAllSheets()" class="p-2.5 bg-slate-50 text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-all">
+                    <i data-lucide="refresh-cw" class="w-5 h-5" id="refresh-icon"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-6 pt-12 min-h-[60vh]">
-        <!-- Loading State -->
-        <div id="loading-state" class="flex flex-col items-center justify-center py-40 gap-4">
-            <i data-lucide="loader-2" class="w-12 h-12 text-indigo-200 animate-spin"></i>
-            <p class="text-slate-300 font-bold tracking-widest text-xs uppercase">同步課綱資料中...</p>
+    <main class="max-w-6xl mx-auto px-6 pt-10 min-h-[60vh]">
+        <div id="loading-state" class="flex flex-col items-center justify-center py-32 gap-4">
+            <i data-lucide="loader-2" class="w-10 h-10 text-indigo-200 animate-spin"></i>
+            <p class="text-slate-300 font-bold tracking-widest text-[10px] uppercase">同步課綱資料中...</p>
         </div>
 
-        <!-- Error State -->
-        <div id="error-state" class="hidden max-w-2xl mx-auto p-12 bg-white border border-red-50 rounded-[3rem] shadow-xl text-center">
-            <i data-lucide="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
-            <h2 class="text-2xl font-bold mb-2">同步發生錯誤</h2>
-            <p id="error-message" class="text-slate-500 mb-8 text-base"></p>
-            <button onclick="fetchAllSheets()" class="px-10 py-3.5 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-100">立即重新整理</button>
+        <div id="error-state" class="hidden max-w-xl mx-auto p-10 bg-white border border-red-50 rounded-[2.5rem] shadow-xl text-center">
+            <i data-lucide="alert-circle" class="w-12 h-12 text-red-500 mx-auto mb-3"></i>
+            <h2 class="text-xl font-bold mb-2">同步發生錯誤</h2>
+            <p id="error-message" class="text-slate-500 mb-6 text-sm"></p>
+            <button onclick="fetchAllSheets()" class="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-100 text-sm">立即重新整理</button>
         </div>
 
-        <!-- Home View (Module Grid) -->
         <div id="home-view" class="hidden animate-fade-in">
-            <div class="flex flex-col items-center text-center space-y-4 mb-20">
-                <h2 class="text-4xl sm:text-6xl font-black text-slate-800 tracking-tight">致力讓AI飛入尋常百姓家</h2>
-                <p class="text-slate-400 text-lg max-w-xl leading-relaxed">選擇下方學習分頁，查看詳細的教學規劃與器材清單。</p>
+            <div class="flex flex-col items-center text-center space-y-3 mb-16">
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight text-center">致力讓AI飛入尋常百姓家</h2>
+                <p class="text-slate-400 text-sm max-w-lg leading-relaxed text-center">選擇下方學習分頁，查看詳細的教學規劃與器材清單。</p>
             </div>
-            <div id="module-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+            <div id="module-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
 
-        <!-- Detail View (Syllabus Table) -->
         <div id="detail-view" class="hidden animate-slide-up">
-            <div id="detail-header" class="mb-12"></div>
-            <div id="detail-content" class="bg-white rounded-[4rem] border border-slate-50 shadow-2xl overflow-hidden">
+            <div id="detail-header" class="mb-10 text-left"></div>
+            <div id="detail-content" class="bg-white rounded-[3rem] border border-slate-50 shadow-xl overflow-hidden">
                 <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-left border-collapse min-w-[1000px]">
+                    <table class="w-full text-left border-collapse min-w-[900px] table-auto">
                         <thead id="table-head"></thead>
                         <tbody id="table-body" class="divide-y divide-slate-50"></tbody>
                     </table>
                 </div>
             </div>
-            <div class="mt-20 flex justify-center pb-20">
-                <button onclick="goHome()" id="back-btn-bottom" class="group flex items-center gap-4 px-14 py-6 bg-white border-2 rounded-[3rem] shadow-2xl transition-all active:scale-95">
-                    <i data-lucide="arrow-left" class="w-7 h-7"></i>
-                    <span class="font-black text-2xl text-slate-800">返回學院模組目錄</span>
+            <div class="mt-16 flex justify-center pb-20">
+                <button onclick="goHome()" id="back-btn-bottom" class="group flex items-center gap-3 px-10 py-4 bg-white border-2 rounded-[2rem] shadow-xl transition-all active:scale-95">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    <span class="font-black text-xl text-slate-800">返回目錄</span>
                 </button>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-24 text-center space-y-8 px-6 pb-20">
-        <div class="flex flex-col items-center gap-2">
-            <p class="text-2xl font-black text-slate-800 tracking-tight">台周老師學院</p>
-            <p class="text-[12px] text-slate-300 font-bold uppercase tracking-[0.7em] mb-4">Tai Zhou Academy Production</p>
-            <div class="flex items-center gap-3 px-8 py-2.5 bg-slate-50 rounded-full">
-                <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></span>
-                <span class="text-[11px] font-black text-slate-400 uppercase tracking-widest">Syllabus System v3.0</span>
+    <footer class="mt-16 text-center space-y-6 px-6 pb-16">
+        <div class="flex flex-col items-center gap-1">
+            <p class="text-lg font-black text-slate-800 tracking-tight">台周老師學院</p>
+            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-[0.6em] mb-3">Tai Zhou Academy Production</p>
+            <div class="flex items-center gap-2.5 px-6 py-1.5 bg-slate-50 rounded-full">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.5)]"></span>
+                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Syllabus System v3.5</span>
             </div>
         </div>
     </footer>
@@ -139,11 +137,11 @@
         };
 
         const macaronColors = [
-            { bg: 'bg-[#FFEBEE]', border: 'border-[#FFCDD2]', text: 'text-[#E57373]', light: 'bg-[#FFCDD2]', tagBg: 'bg-[#FFCDD2]/40', shadow: 'macaron-shadow-red', deep: 'text-[#C62828]' }, 
-            { bg: 'bg-[#E0F2F1]', border: 'border-[#B2DFDB]', text: 'text-[#4DB6AC]', light: 'bg-[#B2DFDB]', tagBg: 'bg-[#B2DFDB]/40', shadow: 'macaron-shadow-teal', deep: 'text-[#00796B]' }, 
-            { bg: 'bg-[#E3F2FD]', border: 'border-[#BBDEFB]', text: 'text-[#64B5F6]', light: 'bg-[#BBDEFB]', tagBg: 'bg-[#BBDEFB]/40', shadow: 'macaron-shadow-blue', deep: 'text-[#1976D2]' }, 
-            { bg: 'bg-[#FFFDE7]', border: 'border-[#FFF9C4]', text: 'text-[#FBC02D]', light: 'bg-[#FFF9C4]', tagBg: 'bg-[#FFF9C4]/40', shadow: 'macaron-shadow-yellow', deep: 'text-[#F57F17]' }, 
-            { bg: 'bg-[#F3E5F5]', border: 'border-[#E1BEE7]', text: 'text-[#BA68C8]', light: 'bg-[#E1BEE7]', tagBg: 'bg-[#E1BEE7]/40', shadow: 'macaron-shadow-purple', deep: 'text-[#7B1FA2]' }, 
+            { bg: 'bg-[#FFEBEE]', border: 'border-[#FFCDD2]', text: 'text-[#E57373]', light: 'bg-[#FFCDD2]', tagBg: 'bg-[#FFCDD2]/30', shadow: 'macaron-shadow-red', deep: 'text-[#C62828]' }, 
+            { bg: 'bg-[#E0F2F1]', border: 'border-[#B2DFDB]', text: 'text-[#4DB6AC]', light: 'bg-[#B2DFDB]', tagBg: 'bg-[#B2DFDB]/30', shadow: 'macaron-shadow-teal', deep: 'text-[#00796B]' }, 
+            { bg: 'bg-[#E3F2FD]', border: 'border-[#BBDEFB]', text: 'text-[#64B5F6]', light: 'bg-[#BBDEFB]', tagBg: 'bg-[#BBDEFB]/30', shadow: 'macaron-shadow-blue', deep: 'text-[#1976D2]' }, 
+            { bg: 'bg-[#FFFDE7]', border: 'border-[#FFF9C4]', text: 'text-[#FBC02D]', light: 'bg-[#FFF9C4]', tagBg: 'bg-[#FFF9C4]/30', shadow: 'macaron-shadow-yellow', deep: 'text-[#F57F17]' }, 
+            { bg: 'bg-[#F3E5F5]', border: 'border-[#E1BEE7]', text: 'text-[#BA68C8]', light: 'bg-[#E1BEE7]', tagBg: 'bg-[#E1BEE7]/30', shadow: 'macaron-shadow-purple', deep: 'text-[#7B1FA2]' }, 
         ];
 
         let modules = [];
@@ -237,17 +235,17 @@
             grid.innerHTML = modules.map(module => {
                 const color = macaronColors[module.colorIndex];
                 return `
-                    <button onclick="showDetail(${module.id})" class="group relative p-8 ${color.bg} border-b-[6px] ${color.border} rounded-[3rem] flex flex-col min-h-[240px] transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 text-left outline-none ${color.shadow}">
-                        <div class="flex justify-between items-start mb-8">
-                            <div class="w-16 h-16 ${color.light} rounded-[1.25rem] flex items-center justify-center shadow-inner group-hover:rotate-6 transition-transform">
-                                <i data-lucide="graduation-cap" class="w-8 h-8 ${color.text}"></i>
+                    <button onclick="showDetail(${module.id})" class="group relative p-6 ${color.bg} border-b-[4px] ${color.border} rounded-[2rem] flex flex-col min-h-[210px] transition-all duration-500 hover:shadow-xl hover:-translate-y-2 text-left outline-none ${color.shadow}">
+                        <div class="flex justify-between items-start mb-6 text-left">
+                            <div class="w-12 h-12 ${color.light} rounded-xl flex items-center justify-center shadow-inner group-hover:rotate-6 transition-transform">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 ${color.text}"></i>
                             </div>
-                            <div class="px-4 py-1.5 ${color.tagBg} ${color.text} rounded-full text-[11px] font-black tracking-widest">館藏</div>
+                            <div class="px-3 py-1 ${color.tagBg} ${color.text} rounded-full text-[9px] font-black tracking-widest">館藏</div>
                         </div>
-                        <h3 class="font-black text-slate-800 text-2xl leading-tight mb-4 flex-grow">${module.title}</h3>
-                        <div class="mt-4 pt-5 border-t border-white/50 flex items-center justify-between text-[11px] font-black text-slate-400 uppercase group-hover:text-indigo-600 transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4"></i> ${module.courses.length} 個單元</span>
-                            <div class="flex items-center gap-1.5 font-black">開啟課綱 <i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+                        <h3 class="font-black text-slate-800 text-xl leading-tight mb-3 flex-grow text-left">${module.title}</h3>
+                        <div class="mt-4 pt-4 border-t border-white/50 flex items-center justify-between text-[10px] font-black text-slate-400 uppercase group-hover:text-indigo-600 transition-colors">
+                            <span class="flex items-center gap-1.5 font-bold"><i data-lucide="layers" class="w-3.5 h-3.5"></i> ${module.courses.length} 單元</span>
+                            <div class="flex items-center gap-1 text-left">開啟 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></div>
                         </div>
                     </button>
                 `;
@@ -263,88 +261,85 @@
             document.getElementById('detail-view').classList.remove('hidden');
             window.scrollTo(0, 0);
 
-            // Render Header (沉浸式配色)
             document.getElementById('detail-header').innerHTML = `
-                <div class="mb-12 animate-fade-in">
-                    <button onclick="goHome()" class="flex items-center gap-3 text-slate-400 font-bold text-base mb-8 hover:text-slate-600 transition-all group">
-                        <div class="p-3 rounded-full ${theme.bg} group-hover:scale-110 transition-transform">
-                            <i data-lucide="arrow-left" class="w-5 h-5 ${theme.text}"></i>
+                <div class="mb-8 animate-fade-in text-left">
+                    <button onclick="goHome()" class="flex items-center gap-2 text-slate-400 font-bold text-xs mb-6 hover:text-slate-600 transition-all group">
+                        <div class="p-2.5 rounded-full ${theme.bg} group-hover:scale-110 transition-transform">
+                            <i data-lucide="arrow-left" class="w-4 h-4 ${theme.text}"></i>
                         </div>
                         返回目錄
                     </button>
-                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-6">
-                                <div class="w-20 h-20 ${theme.bg} rounded-[2rem] flex items-center justify-center shadow-xl ${theme.shadow} border border-white">
-                                    <i data-lucide="book-open" class="w-10 h-10 ${theme.text}"></i>
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 text-left">
+                        <div class="space-y-4 text-left">
+                            <div class="flex items-center gap-5 justify-start">
+                                <div class="w-14 h-14 ${theme.bg} rounded-2xl flex items-center justify-center shadow-lg ${theme.shadow} border border-white">
+                                    <i data-lucide="book-open" class="w-7 h-7 ${theme.text}"></i>
                                 </div>
-                                <h2 class="text-4xl sm:text-7xl font-black text-slate-800 tracking-tight leading-none">${module.title}</h2>
+                                <h2 class="text-3xl sm:text-5xl font-black text-slate-800 tracking-tight leading-none text-left">${module.title}</h2>
                             </div>
-                            <p class="text-slate-400 font-medium text-xl max-w-2xl">收錄「${module.title}」精華課綱，快速掌握 AI 核心應用。</p>
+                            <p class="text-slate-400 font-medium text-base max-w-xl text-left">收錄「${module.title}」精華課綱，快速掌握 AI 核心應用。</p>
                         </div>
-                        <div class="p-8 ${theme.bg} rounded-[2.5rem] border-2 border-white shadow-2xl ${theme.shadow} flex items-center gap-10">
-                            <div class="text-center px-6">
-                                <p class="text-[11px] font-black ${theme.text} uppercase tracking-widest mb-2">單元總數</p>
-                                <p class="text-4xl font-black text-slate-800">${module.courses.length}</p>
+                        <div class="p-6 ${theme.bg} rounded-[2rem] border-2 border-white shadow-xl ${theme.shadow} flex items-center gap-8">
+                            <div class="text-center px-4">
+                                <p class="text-[9px] font-black ${theme.text} uppercase tracking-widest mb-1 text-center">單元總數</p>
+                                <p class="text-3xl font-black text-slate-800 text-center">${module.courses.length}</p>
                             </div>
-                            <div class="w-px h-16 bg-white/60"></div>
-                            <div class="w-16 h-16 rounded-3xl ${theme.light} flex items-center justify-center shadow-sm">
-                                <i data-lucide="sparkles" class="w-8 h-8 ${theme.text}"></i>
+                            <div class="w-px h-12 bg-white/60"></div>
+                            <div class="w-12 h-12 rounded-2xl ${theme.light} flex items-center justify-center shadow-sm">
+                                <i data-lucide="sparkles" class="w-5 h-5 ${theme.text}"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
 
-            // Render Table (完全移除英文)
             document.getElementById('table-head').innerHTML = `
                 <tr class="${theme.bg} border-b ${theme.border}">
-                    <th class="px-10 py-10 text-[12px] font-black uppercase tracking-widest opacity-60">序號</th>
-                    <th class="px-10 py-10 text-[12px] font-black uppercase tracking-widest opacity-60">主題</th>
-                    <th class="px-10 py-10 text-[12px] font-black uppercase tracking-widest opacity-60">大綱</th>
-                    <th class="px-10 py-10 text-[12px] font-black uppercase tracking-widest opacity-60">時間</th>
-                    <th class="px-10 py-10 text-[12px] font-black uppercase tracking-widest opacity-60">所需器材</th>
+                    <th class="px-6 py-6 text-[10px] font-black uppercase tracking-widest opacity-60 text-left w-[80px]">序號</th>
+                    <th class="px-6 py-6 text-[10px] font-black uppercase tracking-widest opacity-60 text-left w-[220px]">主題</th>
+                    <th class="px-6 py-6 text-[10px] font-black uppercase tracking-widest opacity-60 text-left">大綱</th>
+                    <th class="px-6 py-6 text-[10px] font-black uppercase tracking-widest opacity-60 text-left w-[120px]">時間</th>
+                    <th class="px-6 py-6 text-[10px] font-black uppercase tracking-widest opacity-60 text-left w-[180px]">所需器材</th>
                 </tr>
             `;
 
+            // 修正重點：把 course.大綱 前後的 HTML 縮排與換行拿掉，讓 whitespace-pre-wrap 只對真實資料生效
             document.getElementById('table-body').innerHTML = module.courses.map((course, idx) => `
                 <tr class="group hover:bg-slate-50/40 transition-all">
-                    <td class="px-10 py-12 align-top">
-                        <span class="w-12 h-12 rounded-2xl ${theme.light} ${theme.text} flex items-center justify-center font-black text-base group-hover:scale-110 transition-all shadow-sm">
+                    <td class="px-6 py-8 align-top text-left">
+                        <div class="w-9 h-9 rounded-xl ${theme.light} ${theme.text} flex items-center justify-center font-black text-xs group-hover:scale-110 transition-all shadow-sm">
                             ${String(idx + 1).padStart(2, '0')}
-                        </span>
+                        </div>
                     </td>
-                    <td class="px-10 py-12 align-top min-w-[220px]">
-                        <h4 class="font-black text-2xl leading-tight ${theme.deep} group-hover:translate-x-1 transition-transform">${course.主題 || '-'}</h4>
-                        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-lg ${theme.tagBg} ${theme.text} text-[11px] font-black uppercase tracking-wider">教學單元</div>
+                    <td class="px-6 py-8 align-top text-left">
+                        <h4 class="font-black text-lg leading-tight ${theme.deep} group-hover:translate-x-1 transition-transform text-left">${course.主題 || '-'}</h4>
+                        <div class="mt-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-lg ${theme.tagBg} ${theme.text} text-[9px] font-black uppercase tracking-wider">教學單元</div>
                     </td>
-                    <td class="px-10 py-12 align-top max-w-lg text-slate-600 text-lg leading-relaxed font-medium">
-                        ${course.大綱 || '講師暫無描述'}
+                    <td class="px-6 py-8 align-top text-left">
+                        <div class="text-slate-600 text-sm leading-relaxed font-medium whitespace-pre-wrap text-left block w-full">${course.大綱 || '講師暫無描述'}</div>
                     </td>
-                    <td class="px-10 py-12 align-top">
-                        <div class="flex items-center gap-3 px-5 py-2.5 ${theme.bg} ${theme.text} rounded-2xl w-fit font-black text-base shadow-sm">
-                            <i data-lucide="clock" class="w-5 h-5"></i>
+                    <td class="px-6 py-8 align-top text-left">
+                        <div class="flex items-center gap-2 px-3 py-1.5 ${theme.bg} ${theme.text} rounded-xl w-fit font-black text-xs shadow-sm">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
                             <span>${course.時間 || '彈性'}</span>
                         </div>
                     </td>
-                    <td class="px-10 py-12 align-top">
-                        <div class="flex flex-wrap gap-2.5">
+                    <td class="px-6 py-8 align-top text-left">
+                        <div class="flex flex-wrap gap-2 justify-start text-left">
                             ${(course.器材 || '').split('\n').filter(Boolean).map(item => `
-                                <span class="px-5 py-2 ${theme.tagBg} ${theme.text} text-[12px] font-black rounded-xl border-2 border-white shadow-sm">${item}</span>
-                            `).join('') || '<span class="text-slate-300 text-sm italic font-medium">無</span>'}
+                                <span class="px-3 py-1 ${theme.tagBg} ${theme.text} text-[10px] font-black rounded-lg border-2 border-white shadow-sm">${item}</span>
+                            `).join('') || '<span class="text-slate-300 text-xs italic font-medium">無</span>'}
                         </div>
                     </td>
                 </tr>
             `).join('');
 
-            // 下方返回按鈕同步 (修正 null 引用錯誤)
             const backBtn = document.getElementById('back-btn-bottom');
             if (backBtn) {
-                backBtn.className = `group flex items-center gap-5 px-16 py-6 bg-white border-4 ${theme.border} rounded-[3rem] shadow-2xl ${theme.shadow} hover:scale-105 transition-all active:scale-95`;
-                // 針對 Lucide 渲染後的 svg 進行處理
+                backBtn.className = `group flex items-center gap-3 px-10 py-4 bg-white border-4 ${theme.border} rounded-[2rem] shadow-xl ${theme.shadow} hover:scale-105 transition-all active:scale-95`;
                 const icon = backBtn.querySelector('i, svg');
                 if (icon) {
-                    icon.setAttribute('class', `w-8 h-8 ${theme.text} group-hover:-translate-x-1 transition-transform`);
+                    icon.setAttribute('class', `w-5 h-5 ${theme.text} group-hover:-translate-x-1 transition-transform`);
                 }
             }
 
